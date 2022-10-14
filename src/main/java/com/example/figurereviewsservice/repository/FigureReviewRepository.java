@@ -13,7 +13,7 @@ public interface FigureReviewRepository extends MongoRepository<FigureReview, St
     List<FigureReview> findFigureReviewsByFigureName(String figureName);
     List<FigureReview> findFigureReviewByStars(Integer stars);
     List<FigureReview> findAll();
-    FigureReview findFigureReviewByFigureNameAndDate(String name, Date date);
+    FigureReview findFigureReviewByFigureNameAndUser(String name, String user);
 
 
 
