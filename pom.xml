@@ -15,10 +15,8 @@
     <description>FigureReviews-Service</description>
     <properties>
         <java.version>11</java.version>
-    </properties>
-    <properties>
-         <sonar.organization>mathias270197</sonar.organization>
-         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+        <sonar.organization>mathias270197</sonar.organization>
+        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
     </properties>
     <dependencies>
         <dependency>
