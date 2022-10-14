@@ -12,6 +12,8 @@ public class FigureReview {
     @Id
     private String id;
     private String figureName;
+    private String user;
+
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private Date date = new Date();
     private String textReview;
@@ -20,10 +22,19 @@ public class FigureReview {
     public FigureReview() {
     }
 
-    public FigureReview(String figureName, String textReview, Integer stars) {
+    public FigureReview(String figureName, String textReview, Integer stars, String user) {
         this.figureName = figureName;
         this.textReview = textReview;
         this.stars = stars;
+        this.user = user;
+    }
+
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
     }
 
     public String getId() {

@@ -19,10 +19,10 @@ public class FigureReviewController {
     @PostConstruct
     public void fillDB(){
         if(figureReviewRepository.count()==0){
-            figureReviewRepository.save(new FigureReview("Duck" ,"Stukken passen niet goed", 2));
-            figureReviewRepository.save(new FigureReview("Duck" ,"Moeilijke stap", 5));
-            figureReviewRepository.save(new FigureReview("Car" ,"eenvoudige stap", 4));
-            figureReviewRepository.save(new FigureReview("Chicken" ,"eenvoudige stap", 2));
+            figureReviewRepository.save(new FigureReview("Duck" ,"Stukken passen niet goed", 2, "Stijn"));
+            figureReviewRepository.save(new FigureReview("Duck" ,"Moeilijke stap", 5, "Mathias"));
+            figureReviewRepository.save(new FigureReview("Car" ,"eenvoudige stap", 4, "Stijn"));
+            figureReviewRepository.save(new FigureReview("Chicken" ,"eenvoudige stap", 2,"Stijn"));
         }
     };
 
@@ -42,9 +42,9 @@ public class FigureReviewController {
         return figureReviewRepository.findFigureReviewByStars(stars);
     }
 
-    @GetMapping("/figureReviewByNameAndDate/{name}/{date}")
-    public FigureReview getFigureReviewByName(@PathVariable String name,@PathVariable Date date) {
-        return figureReviewRepository.findFigureReviewByFigureNameAndDate(name,date);
+    @GetMapping("/figureReviewByNameAndDate/{name}/{user}")
+    public FigureReview getFigureReviewByName(@PathVariable String name,@PathVariable String user) {
+        return figureReviewRepository.findFigureReviewByFigureNameAndUser(name,user);
     }
 
     @PostMapping ("/figureReview")
@@ -55,7 +55,7 @@ public class FigureReviewController {
 
     @PutMapping("/figureReview")
     public FigureReview updateFigureReview(@RequestBody FigureReview updateFigureReview){
-        FigureReview retrievedFigureReview = figureReviewRepository.findFigureReviewByFigureNameAndDate(updateFigureReview.getFigureName(), updateFigureReview.getDate() );
+        FigureReview retrievedFigureReview = figureReviewRepository.findFigureReviewByFigureNameAndUser(updateFigureReview.getFigureName(), updateFigureReview.getUser() );
 
         retrievedFigureReview.setFigureName(updateFigureReview.getFigureName());
         retrievedFigureReview.setDate(updateFigureReview.getDate());
@@ -65,9 +65,9 @@ public class FigureReviewController {
         return retrievedFigureReview;
     }
 
-    @DeleteMapping("figureReviews/name/{name}/date/{date}")
-    public ResponseEntity deleteFigureReview(@PathVariable String name, @PathVariable Date date){
-        FigureReview figureReview = figureReviewRepository.findFigureReviewByFigureNameAndDate(name, date);
+    @DeleteMapping("figureReviews/name/{name}/user/{user}")
+    public ResponseEntity deleteFigureReview(@PathVariable String name, @PathVariable String user){
+        FigureReview figureReview = figureReviewRepository.findFigureReviewByFigureNameAndUser(name, user);
         if(figureReview!=null){
             figureReviewRepository.delete(figureReview);
             return ResponseEntity.ok().build();
