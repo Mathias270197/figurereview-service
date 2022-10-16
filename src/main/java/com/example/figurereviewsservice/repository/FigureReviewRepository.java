@@ -11,7 +11,7 @@ import java.util.List;
 public interface FigureReviewRepository extends MongoRepository<FigureReview, String> {
 
     List<FigureReview> findFigureReviewsByFigureName(String figureName);
-    List<FigureReview> findFigureReviewByStars(Integer stars);
+    List<FigureReview> findFigureReviewsByStars(Integer stars);
     List<FigureReview> findAll();
     FigureReview findFigureReviewByFigureNameAndUser(String name, String user);
 
