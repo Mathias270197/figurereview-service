@@ -38,13 +38,13 @@ public class FigureReviewController {
     }
 
     @GetMapping("/figureNamesByStars/{stars}")
-    public List<FigureReview> getFigureReviewByName(@PathVariable Integer stars){
-        return figureReviewRepository.findFigureReviewByStars(stars);
+    public List<FigureReview> getFigureReviewByStars(@PathVariable Integer stars){
+        return figureReviewRepository.findFigureReviewsByStars(stars);
     }
 
-    @GetMapping("/figureReviewByNameAndDate/{name}/{user}")
-    public FigureReview getFigureReviewByName(@PathVariable String name,@PathVariable String user) {
-        return figureReviewRepository.findFigureReviewByFigureNameAndUser(name,user);
+    @GetMapping("/figureReviewByNameAndUser/{figureName}/{user}")
+    public FigureReview getFigureReviewByFigureName(@PathVariable String figureName,@PathVariable String user) {
+        return figureReviewRepository.findFigureReviewByFigureNameAndUser(figureName,user);
     }
 
     @PostMapping ("/figureReview")
@@ -55,9 +55,11 @@ public class FigureReviewController {
 
     @PutMapping("/figureReview")
     public FigureReview updateFigureReview(@RequestBody FigureReview updateFigureReview){
-        FigureReview retrievedFigureReview = figureReviewRepository.findFigureReviewByFigureNameAndUser(updateFigureReview.getFigureName(), updateFigureReview.getUser() );
+        FigureReview retrievedFigureReview = figureReviewRepository.findFigureReviewByFigureNameAndUser(updateFigureReview.getFigureName(), updateFigureReview.getUser());
 
-        retrievedFigureReview.setFigureName(updateFigureReview.getFigureName());
+//        retrievedFigureReview.setFigureName(updateFigureReview.getFigureName());
+        retrievedFigureReview.setTextReview(updateFigureReview.getTextReview());
+        retrievedFigureReview.setStars(updateFigureReview.getStars());
         retrievedFigureReview.setDate(updateFigureReview.getDate());
 
         figureReviewRepository.save(retrievedFigureReview);
@@ -65,16 +67,18 @@ public class FigureReviewController {
         return retrievedFigureReview;
     }
 
-    @DeleteMapping("figureReviews/name/{name}/user/{user}")
-    public ResponseEntity deleteFigureReview(@PathVariable String name, @PathVariable String user){
-        FigureReview figureReview = figureReviewRepository.findFigureReviewByFigureNameAndUser(name, user);
+    @DeleteMapping("figureReviews/name/{figureName}/user/{user}")
+    public ResponseEntity deleteFigureReview(@PathVariable String figureName, @PathVariable String user){
+        FigureReview figureReview = figureReviewRepository.findFigureReviewByFigureNameAndUser(figureName, user);
         if(figureReview!=null){
             figureReviewRepository.delete(figureReview);
             return ResponseEntity.ok().build();
         }else{
             return ResponseEntity.notFound().build();
         }
-    };
+    }
+
+
 
 }
 
