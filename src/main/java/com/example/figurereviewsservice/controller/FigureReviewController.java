@@ -19,12 +19,12 @@ public class FigureReviewController {
     @PostConstruct
     public void fillDB(){
         if(figureReviewRepository.count()==0){
-            figureReviewRepository.save(new FigureReview("Duck" ,"Stukken passen niet goed", 2, "Stijn"));
-            figureReviewRepository.save(new FigureReview("Duck" ,"Moeilijke stap", 5, "Mathias"));
-            figureReviewRepository.save(new FigureReview("Car" ,"eenvoudige stap", 4, "Stijn"));
-            figureReviewRepository.save(new FigureReview("Chicken" ,"eenvoudige stap", 2,"Stijn"));
+            figureReviewRepository.save(new FigureReview("Apple" ,"Leuk figuurtje", 4, "Stijn"));
+            figureReviewRepository.save(new FigureReview("Apple" ,"Moeilijk figuurtje", 2, "Mathias"));
+            figureReviewRepository.save(new FigureReview("House" ,"Geen leuk figuur", 1,"Stijn"));
+            figureReviewRepository.save(new FigureReview("House" ,"Schattig figuur", 3,"Mathias"));
         }
-    };
+    }
 
 
     @GetMapping("/figureReviews")
