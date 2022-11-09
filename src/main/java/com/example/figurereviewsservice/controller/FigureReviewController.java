@@ -30,7 +30,7 @@ public class FigureReviewController {
             figureReviewRepository.save(new FigureReview("Robot" ,reviewArray[6], 4, "Stijn"));
             figureReviewRepository.save(new FigureReview("Robot" ,reviewArray[0], 3,"Stijn"));
         }
-    };
+    }
 
 
     @GetMapping("/figureReviews")
