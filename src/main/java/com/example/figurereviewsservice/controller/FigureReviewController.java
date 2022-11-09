@@ -18,11 +18,17 @@ public class FigureReviewController {
 
     @PostConstruct
     public void fillDB(){
+        String[] reviewArray={"Mooi figuurtje","Tof speelgoed","Stukken passen niet goed","Blokken zijn heel klein", "Leuk", "Duur maar leuk"};
+
         if(figureReviewRepository.count()==0){
-            figureReviewRepository.save(new FigureReview("Apple" ,"Leuk figuurtje", 4, "Stijn"));
-            figureReviewRepository.save(new FigureReview("Apple" ,"Moeilijk figuurtje", 2, "Mathias"));
-            figureReviewRepository.save(new FigureReview("House" ,"Geen leuk figuur", 1,"Stijn"));
-            figureReviewRepository.save(new FigureReview("House" ,"Schattig figuur", 3,"Mathias"));
+            figureReviewRepository.save(new FigureReview("Apple" ,reviewArray[0], 5, "Stijn"));
+            figureReviewRepository.save(new FigureReview("Apple" ,reviewArray[1], 4, "Mathias"));
+            figureReviewRepository.save(new FigureReview("Apple" ,reviewArray[2], 2, "Stijn"));
+            figureReviewRepository.save(new FigureReview("House" ,reviewArray[3], 3,"Mathias"));
+            figureReviewRepository.save(new FigureReview("House" ,reviewArray[4], 5, "Stijn"));
+            figureReviewRepository.save(new FigureReview("Robot" ,reviewArray[5], 5, "Mathias"));
+            figureReviewRepository.save(new FigureReview("Robot" ,reviewArray[6], 4, "Stijn"));
+            figureReviewRepository.save(new FigureReview("Robot" ,reviewArray[0], 3,"Stijn"));
         }
     }
 
@@ -57,7 +63,6 @@ public class FigureReviewController {
     public FigureReview updateFigureReview(@RequestBody FigureReview updateFigureReview){
         FigureReview retrievedFigureReview = figureReviewRepository.findFigureReviewByFigureNameAndUser(updateFigureReview.getFigureName(), updateFigureReview.getUser());
 
-//        retrievedFigureReview.setFigureName(updateFigureReview.getFigureName());
         retrievedFigureReview.setTextReview(updateFigureReview.getTextReview());
         retrievedFigureReview.setStars(updateFigureReview.getStars());
         retrievedFigureReview.setDate(updateFigureReview.getDate());
@@ -77,8 +82,6 @@ public class FigureReviewController {
             return ResponseEntity.notFound().build();
         }
     }
-
-
-
+    
 }
 
