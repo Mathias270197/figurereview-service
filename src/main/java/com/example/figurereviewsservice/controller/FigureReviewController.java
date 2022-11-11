@@ -27,7 +27,7 @@ public class FigureReviewController {
             figureReviewRepository.save(new FigureReview("House" ,reviewArray[3], 3,"Mathias"));
             figureReviewRepository.save(new FigureReview("House" ,reviewArray[4], 5, "Stijn"));
             figureReviewRepository.save(new FigureReview("Robot" ,reviewArray[5], 5, "Mathias"));
-            figureReviewRepository.save(new FigureReview("Robot" ,reviewArray[6], 4, "Stijn"));
+            figureReviewRepository.save(new FigureReview("Robot" ,reviewArray[1], 4, "Stijn"));
             figureReviewRepository.save(new FigureReview("Robot" ,reviewArray[0], 3,"Stijn"));
         }
     }
